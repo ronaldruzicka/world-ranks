@@ -194,18 +194,6 @@ module.exports = {
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
     'react/jsx-boolean-value': ['error', 'never', { always: [] }],
 
-    // Enforce event handler naming conventions in JSX
-    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-handler-names.md
-    'react/jsx-handler-names': [
-      'error',
-      {
-        eventHandlerPrefix: 'handle',
-        eventHandlerPropPrefix: 'on',
-        checkLocalVariables: true,
-        checkInlineFunction: true,
-      },
-    ],
-
     /**
      * Import
      */

@@ -1,12 +1,7 @@
-import Head from 'next/head'
+import { Layout } from '../components/Layout'
 
-export default function Home() {
-  return (
-    <div>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-    </div>
-  )
+const Home = () => {
+  return <Layout></Layout>
 }
+
+export default Home

@@ -6,6 +6,6 @@ export const SearchLabel = styled.p`
 
   @media (min-width: 768px) {
     flex: 0 0 50%;
-    margin-bottom: 0;
+    margin-bottom: 1px;
   }
 `

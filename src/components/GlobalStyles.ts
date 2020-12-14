@@ -6,6 +6,7 @@ export const GlobalStyles = createGlobalStyle`
     --textColor: #124a63;
     --accentColor: #21b6b7;
     --spacer: 8px;
+    --textAltColor: #b3c5cd;
 
     [data-theme="dark"] {
       --bgColor: #252329;

@@ -3,6 +3,7 @@ import { ReactNode, useEffect, useState } from 'react'
 import { Header } from '../components/Header'
 import { Logo } from '../components/Logo'
 import { Theme } from '../constants'
+import { Container } from './Container'
 import { ThemeSwitch } from './ThemeSwitch/ThemeSwitch'
 
 type Props = {
@@ -20,7 +21,7 @@ export const Layout = ({ children }: Props) => {
     setTheme((theme) => (theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT))
 
   return (
-    <div>
+    <Container>
       <Head>
         <title>World Ranks</title>
         <link rel="icon" href="/favicon.ico" />
@@ -32,6 +33,6 @@ export const Layout = ({ children }: Props) => {
       </Header>
 
       {children}
-    </div>
+    </Container>
   )
 }

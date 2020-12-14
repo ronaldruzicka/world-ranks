@@ -1,7 +1,12 @@
 import { Layout } from '../components/Layout'
+import { Search } from '../components/Search/Search'
 
 const Home = () => {
-  return <Layout></Layout>
+  return (
+    <Layout>
+      <Search />
+    </Layout>
+  )
 }
 
 export default Home

@@ -5,7 +5,7 @@ export const TableCell = styled.td`
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 0;
   font-weight: inherit;
 
@@ -13,6 +13,7 @@ export const TableCell = styled.td`
     content: attr(data-label);
     display: block;
     padding-right: ${({ theme }) => theme.spacer * 2}px;
+    margin-right: auto;
     font-weight: 600;
 
     ${mq('SM')`
@@ -21,8 +22,15 @@ export const TableCell = styled.td`
   }
 
   ${mq('SM')`
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 4 1;
-    text-align: center;
   `}
+
+  &:first-child {
+    ${mq('SM')`
+      justify-content: flex-start;
+    `}
+  }
 `

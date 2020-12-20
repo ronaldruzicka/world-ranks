@@ -17,12 +17,6 @@ export const GlobalStyles = createGlobalStyle`
     line-height: 2;
   }
 
-  // Fix scrollbars during animation on Windows
-  html,
-  body {
-    overflow: hidden;
-  }
-
   article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     display: block;
   }

@@ -20,6 +20,7 @@ export const SearchInputStyled = styled.div`
     background-color: transparent;
     border: 0;
     color: inherit;
+    font-size: 1rem;
 
     &:focus {
       outline: none;

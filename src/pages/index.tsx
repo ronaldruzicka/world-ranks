@@ -44,7 +44,9 @@ const Home = ({ data }: Props) => {
                   <Flag src={flag} alt={`Flag of ${name}`} />
                   {name}
                 </TableCell>
-                <TableCell data-label="Population">{population.toLocaleString()}</TableCell>
+                <TableCell data-label="Population">
+                  {population.toLocaleString()}
+                </TableCell>
                 <TableCell data-label="Area (km2)">
                   {typeof area === 'number' ? (
                     <>
@@ -54,7 +56,9 @@ const Home = ({ data }: Props) => {
                     'N/A'
                   )}
                 </TableCell>
-                <TableCell data-label="Gini">{gini ? `${gini} %` : 'N/A'}</TableCell>
+                <TableCell data-label="Gini">
+                  {gini ? `${gini} %` : 'N/A'}
+                </TableCell>
               </TableRow>
             )
           })}

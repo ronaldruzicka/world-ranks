@@ -1,20 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
-  :root {
-    --bgColor: #f7f7f7;
-    --textColor: #124a63;
-    --accentColor: #21b6b7;
-    --spacer: 8px;
-    --textAltColor: #b3c5cd;
-
-    [data-theme="dark"] {
-      --bgColor: #252329;
-      --textColor: #fff;
-    }
-  }
-
-
   *,
   *::before,
   *::after {
@@ -44,8 +30,8 @@ export const GlobalStyles = createGlobalStyle`
   body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    background-color: var(--bgColor);
-    color: var(--textColor);
+    background-color: ${({ theme }) => theme.palette.bg};
+    color: ${({ theme }) => theme.palette.text};
     margin: 0;
     text-align: left;
     text-rendering: optimizeLegibility;

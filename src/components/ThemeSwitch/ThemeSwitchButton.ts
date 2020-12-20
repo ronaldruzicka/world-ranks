@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 export const ThemeSwitchButton = styled.button`
   padding: 0;
-  margin-left: var(--spacer);
+  margin-left: ${({ theme }) => theme.spacer}px;
   background-color: transparent;
-  color: var(--textColorAlt);
+  color: ${({ theme }) => theme.palette.textAlt};
   border: 0;
 `

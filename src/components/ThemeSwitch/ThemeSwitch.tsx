@@ -1,21 +1,18 @@
 import { Brightness4Outlined, Brightness5Rounded } from '@material-ui/icons'
-import { Theme } from '../../constants'
 import { ThemeSwitchButton } from './ThemeSwitchButton'
 
 type Props = {
-  theme: Theme
+  isDarkTheme: boolean
   onClick: () => void
 }
 
-export const ThemeSwitch = ({ theme, onClick }: Props) => {
-  const isLightTheme = theme === Theme.LIGHT
-
+export const ThemeSwitch = ({ isDarkTheme, onClick }: Props) => {
   return (
     <ThemeSwitchButton
-      title={`Switch to ${isLightTheme ? 'dark' : 'light'} theme`}
+      title={`Switch to ${isDarkTheme ? 'light' : 'dark'} theme`}
       onClick={onClick}
     >
-      {isLightTheme ? <Brightness4Outlined /> : <Brightness5Rounded />}
+      {isDarkTheme ? <Brightness5Rounded /> : <Brightness4Outlined />}
     </ThemeSwitchButton>
   )
 }

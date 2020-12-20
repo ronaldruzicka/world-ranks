@@ -1,9 +1,11 @@
 import Head from 'next/head'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useState } from 'react'
+import { ThemeProvider } from 'styled-components'
 import { Header } from '../components/Header'
 import { Logo } from '../components/Logo'
-import { Theme } from '../constants'
 import { Container } from './Container'
+import { darkTheme, lightTheme } from './Styles/constants'
+import { GlobalStyles } from './Styles/GlobalStyles'
 import { ThemeSwitch } from './ThemeSwitch/ThemeSwitch'
 
 type Props = {
@@ -11,28 +13,27 @@ type Props = {
 }
 
 export const Layout = ({ children }: Props) => {
-  const [theme, setTheme] = useState<Theme>(Theme.LIGHT)
+  const [isDarkTheme, setDarkTheme] = useState(false)
 
-  useEffect(() => {
-    document.body.setAttribute('data-theme', theme)
-  }, [theme])
-
-  const handleChangeTheme = () =>
-    setTheme((theme) => (theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT))
+  const handleChangeTheme = () => setDarkTheme((isDarkTheme) => !isDarkTheme)
 
   return (
-    <Container>
-      <Head>
-        <title>World Ranks</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+      <GlobalStyles />
 
-      <Header>
-        <Logo />
-        <ThemeSwitch theme={theme} onClick={handleChangeTheme} />
-      </Header>
+      <Container>
+        <Head>
+          <title>World Ranks</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      {children}
-    </Container>
+        <Header>
+          <Logo />
+          <ThemeSwitch isDarkTheme={isDarkTheme} onClick={handleChangeTheme} />
+        </Header>
+
+        {children}
+      </Container>
+    </ThemeProvider>
   )
 }

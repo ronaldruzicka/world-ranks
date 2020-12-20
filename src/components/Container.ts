@@ -1,6 +1,6 @@
+import { padding } from 'polished'
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  padding-left: calc(var(--spacer) * 3);
-  padding-right: calc(var(--spacer) * 3);
+  ${({ theme }) => padding(null, theme.spacer * 3)};
 `

@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const SearchLabel = styled.p`
-  margin-bottom: calc(var(--spacer) * 1.5);
-  color: var(--textAltColor);
+  margin-bottom: ${({ theme }) => theme.spacer * 1.5}px;
+  color: ${({ theme }) => theme.palette.textAlt};
 
   @media (min-width: 768px) {
     flex: 0 0 50%;

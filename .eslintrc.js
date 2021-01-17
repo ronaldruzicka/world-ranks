@@ -20,7 +20,14 @@ module.exports = {
     node: true, // Node.js global variables and Node.js scoping.
   },
   ignorePatterns: ['node_modules/*', '.next/*'], // Ignore node_modules and .next generated files
-  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'jsx-a11y', 'import', 'prettier'],
+  plugins: [
+    '@typescript-eslint',
+    'react',
+    'react-hooks',
+    'jsx-a11y',
+    'import',
+    'prettier',
+  ],
   extends: [
     // Uses the recommended rules from @eslint-plugin-react
     'plugin:react/recommended',
@@ -59,6 +66,16 @@ module.exports = {
     /**
      * Typescript
      */
+
+    // Allow @ts-<directive> comments for development
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-ts-comment.md
+    '@typescript-eslint/ban-ts-comment':
+      process.env.NODE_ENV === 'production' ? 'error' : 'warn',
+
+    // Allow unused variables for development purposes
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
+    '@typescript-eslint/no-unused-vars':
+      process.env.NODE_ENV === 'production' ? 'error' : 'warn',
 
     // Don't need to specify function return types
     // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-module-boundary-types.md
@@ -140,8 +157,16 @@ module.exports = {
       { blankLine: 'always', prev: 'import', next: '*' },
       { blankLine: 'any', prev: 'import', next: 'import' },
       // Always require blank lines before and after every sequence of variable declarations and export
-      { blankLine: 'always', prev: '*', next: ['const', 'let', 'var', 'export'] },
-      { blankLine: 'always', prev: ['const', 'let', 'var', 'export'], next: '*' },
+      {
+        blankLine: 'always',
+        prev: '*',
+        next: ['const', 'let', 'var', 'export'],
+      },
+      {
+        blankLine: 'always',
+        prev: ['const', 'let', 'var', 'export'],
+        next: '*',
+      },
       {
         blankLine: 'any',
         prev: ['const', 'let', 'var', 'export'],
@@ -212,5 +237,12 @@ module.exports = {
     // Allow any order of import statements
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md
     'import/order': ['error', { groups: ['builtin', 'external'] }],
+
+    /**
+     * a11ty
+     */
+    // ! Deprecated - but still not released
+    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-onchange.md
+    'jsx-a11y/no-onchange': 'off',
   },
 }

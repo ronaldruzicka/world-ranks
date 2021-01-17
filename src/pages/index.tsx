@@ -1,3 +1,5 @@
+import { SyntheticEvent, useState } from 'react'
+import { SortButton } from '../components/Button/SortButton'
 import { Flag } from '../components/Flag/Flag'
 import { Layout } from '../components/Layout'
 import { Search } from '../components/Search/Search'
@@ -6,6 +8,8 @@ import { TableBody } from '../components/Table/TableBody'
 import { TableCell } from '../components/Table/TableCell'
 import { TableHead } from '../components/Table/TableHead'
 import { TableRow } from '../components/Table/TableRow'
+import { sortCountries } from '../helpers/sort'
+import { SortDirection } from '../helpers/types'
 import { fetchCountries } from '../services/fetchCountries'
 
 type Country = {
@@ -22,20 +26,47 @@ type Props = {
 }
 
 const Home = ({ data }: Props) => {
+  const [sortDirection, setSortDirection] = useState<SortDirection | null>(null)
+  const [orderBy, setOrderBy] = useState<keyof Country | null>(null)
+  const countries = sortCountries(sortDirection, orderBy, data)
+
+  const handleSort = (event: SyntheticEvent<HTMLButtonElement>) => {
+    setOrderBy(event.currentTarget.value as keyof Country)
+    setSortDirection((direction) => {
+      if (!direction) {
+        return SortDirection.ASC
+      }
+
+      if (direction === SortDirection.ASC) {
+        return SortDirection.DESC
+      }
+
+      return null
+    })
+  }
+
+  const headCells = ['Name', 'Population', 'Area', 'Gini']
+
   return (
     <Layout>
       <Search numOfCountries={data.length} />
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell as="th">Name</TableCell>
-            <TableCell as="th">Population</TableCell>
-            <TableCell as="th">Area</TableCell>
-            <TableCell as="th">Gini</TableCell>
+            {headCells.map((cell) => (
+              <TableCell key={cell}>
+                <SortButton
+                  active={orderBy === cell}
+                  direction={sortDirection}
+                  onClick={handleSort}
+                  value={cell}
+                />
+              </TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((country) => {
+          {countries.map((country) => {
             const { alpha3Code, area, flag, gini, name, population } = country
 
             return (

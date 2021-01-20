@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { mq } from '../Styles/helpers'
+import { mq } from 'components/Styles/helpers'
 
 export const TableHead = styled.thead`
   display: none;

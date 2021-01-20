@@ -1,5 +1,5 @@
+import { SortDirection } from 'helpers/types'
 import styled from 'styled-components'
-import { SortDirection } from '../../helpers/types'
 
 type Props = {
   direction: SortDirection

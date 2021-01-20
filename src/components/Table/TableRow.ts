@@ -1,6 +1,6 @@
 import { padding } from 'polished'
 import styled from 'styled-components'
-import { mq } from '../Styles/helpers'
+import { mq } from 'components/Styles/helpers'
 
 export const TableRow = styled.tr`
   display: block;

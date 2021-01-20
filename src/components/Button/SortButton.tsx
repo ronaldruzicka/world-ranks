@@ -1,6 +1,6 @@
 import { SortRounded as SortIcon } from '@material-ui/icons'
+import { SortDirection } from 'helpers/types'
 import { SyntheticEvent } from 'react'
-import { SortDirection } from '../../helpers/types'
 import { Button } from './Button'
 import { ButtonIcon } from './ButtonIcon'
 

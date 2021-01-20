@@ -1,11 +1,11 @@
+import { CountriesTable } from 'components/CountriesTable/CountriesTable'
+import { Country } from 'components/CountriesTable/types'
+import { Layout } from 'components/Layout'
+import { searchByNameRegionSubregion } from 'components/Search/helpers'
+import { Search } from 'components/Search/Search'
 import { toLower } from 'ramda'
 import { ChangeEvent, useState } from 'react'
-import { CountriesTable } from '../components/CountriesTable/CountriesTable'
-import { Country } from '../components/CountriesTable/types'
-import { Layout } from '../components/Layout'
-import { searchByNameRegionSubregion } from '../components/Search/helpers'
-import { Search } from '../components/Search/Search'
-import { fetchCountries } from '../services/fetchCountries'
+import { fetchCountries } from 'services/fetchCountries'
 
 type Props = {
   data: Country[]

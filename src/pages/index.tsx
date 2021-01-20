@@ -1,7 +1,9 @@
-import { SyntheticEvent, useState } from 'react'
+import { toLower } from 'ramda'
+import { ChangeEvent, SyntheticEvent, useState } from 'react'
 import { SortButton } from '../components/Button/SortButton'
 import { Flag } from '../components/Flag/Flag'
 import { Layout } from '../components/Layout'
+import { searchByNameRegionSubregion } from '../components/Search/helpers'
 import { Search } from '../components/Search/Search'
 import { Table } from '../components/Table/Table'
 import { TableBody } from '../components/Table/TableBody'
@@ -28,7 +30,9 @@ type Props = {
 const Home = ({ data }: Props) => {
   const [sortDirection, setSortDirection] = useState<SortDirection | null>(null)
   const [orderBy, setOrderBy] = useState<keyof Country | null>(null)
-  const countries = sortCountries(sortDirection, orderBy, data)
+  const [searchValue, setSearchValue] = useState('')
+  const [countries, setCountries] = useState<Country[]>(data)
+  const sortedCountries = sortCountries(sortDirection, orderBy, countries)
 
   const handleSort = (event: SyntheticEvent<HTMLButtonElement>) => {
     setOrderBy(event.currentTarget.value as keyof Country)
@@ -45,11 +49,27 @@ const Home = ({ data }: Props) => {
     })
   }
 
+  const handleChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    const searchValue = toLower(event.target.value)
+
+    setSearchValue(searchValue)
+
+    const searchResult = searchValue
+      ? searchByNameRegionSubregion(searchValue)(data)
+      : data
+
+    setCountries(searchResult)
+  }
+
   const headCells = ['Name', 'Population', 'Area', 'Gini']
 
   return (
     <Layout>
-      <Search numOfCountries={data.length} />
+      <Search
+        onSearchChange={handleChangeSearch}
+        numOfCountries={data.length}
+        value={searchValue}
+      />
       <Table>
         <TableHead>
           <TableRow>
@@ -66,7 +86,7 @@ const Home = ({ data }: Props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {countries.map((country) => {
+          {sortedCountries.map((country) => {
             const { alpha3Code, area, flag, gini, name, population } = country
 
             return (

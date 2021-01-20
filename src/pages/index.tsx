@@ -1,4 +1,4 @@
-import { toLower } from 'ramda'
+import { length, toLower } from 'ramda'
 import { ChangeEvent, SyntheticEvent, useState } from 'react'
 import { SortButton } from '../components/Button/SortButton'
 import { Flag } from '../components/Flag/Flag'
@@ -86,33 +86,37 @@ const Home = ({ data }: Props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {sortedCountries.map((country) => {
-            const { alpha3Code, area, flag, gini, name, population } = country
+          {length(sortedCountries) ? (
+            sortedCountries.map((country) => {
+              const { alpha3Code, area, flag, gini, name, population } = country
 
-            return (
-              <TableRow key={alpha3Code}>
-                <TableCell data-label="Name">
-                  <Flag src={flag} alt={`Flag of ${name}`} />
-                  {name}
-                </TableCell>
-                <TableCell data-label="Population">
-                  {population.toLocaleString()}
-                </TableCell>
-                <TableCell data-label="Area (km2)">
-                  {typeof area === 'number' ? (
-                    <>
-                      {area.toLocaleString()} km<sup>2</sup>
-                    </>
-                  ) : (
-                    'N/A'
-                  )}
-                </TableCell>
-                <TableCell data-label="Gini">
-                  {gini ? `${gini} %` : 'N/A'}
-                </TableCell>
-              </TableRow>
-            )
-          })}
+              return (
+                <TableRow key={alpha3Code}>
+                  <TableCell data-label="Name">
+                    <Flag src={flag} alt={`Flag of ${name}`} />
+                    {name}
+                  </TableCell>
+                  <TableCell data-label="Population">
+                    {population.toLocaleString()}
+                  </TableCell>
+                  <TableCell data-label="Area (km2)">
+                    {typeof area === 'number' ? (
+                      <>
+                        {area.toLocaleString()} km<sup>2</sup>
+                      </>
+                    ) : (
+                      'N/A'
+                    )}
+                  </TableCell>
+                  <TableCell data-label="Gini">
+                    {gini ? `${gini} %` : 'N/A'}
+                  </TableCell>
+                </TableRow>
+              )
+            })
+          ) : (
+            <p>No countries found</p>
+          )}
         </TableBody>
       </Table>
     </Layout>

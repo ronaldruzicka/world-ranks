@@ -13,7 +13,11 @@ type Props = {
 }
 
 export const Layout = ({ children }: Props) => {
-  const [isDarkTheme, setDarkTheme] = useState(false)
+  const isDarkOS =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+
+  const [isDarkTheme, setDarkTheme] = useState(isDarkOS)
 
   const handleChangeTheme = () => setDarkTheme((isDarkTheme) => !isDarkTheme)
 

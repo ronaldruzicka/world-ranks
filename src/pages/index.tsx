@@ -1,6 +1,5 @@
 import { CountriesTable } from 'components/CountriesTable/CountriesTable'
 import { Country } from 'components/CountriesTable/types'
-import { Layout } from 'components/Layout'
 import { searchByNameRegionSubregion } from 'components/Search/helpers'
 import { Search } from 'components/Search/Search'
 import { toLower } from 'ramda'
@@ -28,14 +27,14 @@ const Home = ({ data }: Props) => {
   }
 
   return (
-    <Layout>
+    <>
       <Search
         onSearchChange={handleChangeSearch}
         numOfCountries={data.length}
         value={searchValue}
       />
       <CountriesTable countries={countries} />
-    </Layout>
+    </>
   )
 }
 

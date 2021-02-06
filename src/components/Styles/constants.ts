@@ -16,7 +16,8 @@ export const lightTheme: DefaultTheme = {
     bg: '#f7f7f7',
     text: '#124a63',
     inputBg: '#eef3f6',
-    tableRowBg: '#fff',
+    cardBg: '#fff',
+    title: '#333',
   },
 }
 
@@ -27,7 +28,8 @@ export const darkTheme: DefaultTheme = {
     bg: '#252329',
     text: '#fff',
     inputBg: '#3c393f',
-    tableRowBg: '#3c393f',
+    cardBg: '#3c393f',
+    title: '#fff',
   },
 }
 

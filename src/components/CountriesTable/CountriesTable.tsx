@@ -7,6 +7,7 @@ import { TableHead } from 'components/Table/TableHead'
 import { TableRow } from 'components/Table/TableRow'
 import { sortCountries } from 'helpers/sort'
 import { SortDirection } from 'helpers/types'
+import { useRouter } from 'next/router'
 import { length } from 'ramda'
 import { SyntheticEvent, useState } from 'react'
 import { Country } from './types'
@@ -16,6 +17,7 @@ type Props = {
 }
 
 export const CountriesTable = ({ countries }: Props) => {
+  const router = useRouter()
   const [sortDirection, setSortDirection] = useState<SortDirection | null>(null)
   const [orderBy, setOrderBy] = useState<keyof Country | null>(null)
   const sortedCountries = sortCountries(sortDirection, orderBy, countries)
@@ -34,6 +36,10 @@ export const CountriesTable = ({ countries }: Props) => {
 
       return null
     })
+  }
+
+  const handleClickCountry = (alpha3Code: string) => {
+    router.push(alpha3Code)
   }
 
   return (
@@ -58,7 +64,10 @@ export const CountriesTable = ({ countries }: Props) => {
             const { alpha3Code, area, flag, gini, name, population } = country
 
             return (
-              <TableRow key={alpha3Code}>
+              <TableRow
+                key={alpha3Code}
+                onClick={() => handleClickCountry(alpha3Code)}
+              >
                 <TableCell data-label="Name">
                   <Flag src={flag} alt={`Flag of ${name}`} />
                   {name}

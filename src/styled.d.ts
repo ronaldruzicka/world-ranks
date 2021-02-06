@@ -10,7 +10,8 @@ declare module 'styled-components' {
       bg: string
       text: string
       inputBg: string
-      tableRowBg: string
+      cardBg: string
+      title: string
     }
   }
 }
